@@ -229,7 +229,6 @@ load_plugins "$scriptdir"
 [ -z "$HOME" ] || load_plugins "$HOME/.mkimage"
 
 mkimage_yaml="$(dirname $0)"/mkimage-yaml.sh
-echo "surya 2222" 
 # parse parameters
 while [ $# -gt 0 ]; do
 	opt="$1"
@@ -257,6 +256,7 @@ while [ $# -gt 0 ]; do
 	-*) usage; exit 1;;
 	esac
 done
+echo "surya 2222" 
 
 if [ -z "$RELEASE" ]; then
 	if git describe --exact-match >/dev/null 2>&1; then

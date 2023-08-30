@@ -36,5 +36,6 @@ build-local:
 	mkdir -p $(OUTPUT_DIR)
 	ls 
 	chmod +x genapkovl.sh
+	chmod +x mkimage.sh
 	sh mkimage.sh --outdir $(OUTPUT_DIR) --tag $(ALPINE_LINUX_TAG) --repository "$(ALPINE_LINUX_REPO_EDGE)" \
 		--repository "$(ALPINE_LINUX_REPO_EDGE_COMMUNITY)" --repository "$(ALPINE_LINUX_REPO_TESTING)"

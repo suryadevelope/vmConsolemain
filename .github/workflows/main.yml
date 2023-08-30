@@ -52,15 +52,14 @@ jobs:
       - name: Setup Abuild key
         run: |
           # Create ephemeral key if no secret passphrase provided.
-          if [ -z "$RSA_KEY_PASSPHRASE" ]; then
-            cd ./external/alpine_iso/abuild-keys
-            rm -f vmconsole-dev.*
-            openssl genrsa -out vmconsole-dev.rsa 2048
-            openssl rsa -in vmconsole-dev.rsa -pubout -out vmconsole-dev.rsa.pub
-            openssl aes-256-cbc -in vmconsole-dev.rsa -out vmconsole-dev.rsa.enc -k "pass" -pbkdf2
-            rm -f vmconsole-dev.rsa
-            cd ..
-          fi
+          cd ./external/alpine_iso/abuild-keys
+          rm -f vmconsole-dev.*
+          openssl genrsa -out vmconsole-dev.rsa 2048
+          openssl rsa -in vmconsole-dev.rsa -pubout -out vmconsole-dev.rsa.pub
+          openssl aes-256-cbc -in vmconsole-dev.rsa -out vmconsole-dev.rsa.enc -k "pass" -pbkdf2
+          rm -f vmconsole-dev.rsa
+          cd ..
+          
         env:
           RSA_KEY_PASSPHRASE: ${{ secrets.ABUILD_KEY_PASSPHRASE }}
 
@@ -106,13 +105,7 @@ jobs:
       - name: Setup build environment
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-          sudo apt install build-essential
-          sudo apt install libssl-dev libffi-dev libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev make gcc
-          cd /to/extracted/folder
-          ./configure
-          make
-          sudo make install
-          cd ..
+          
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
 

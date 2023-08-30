@@ -256,7 +256,6 @@ while [ $# -gt 0 ]; do
 	-*) usage; exit 1;;
 	esac
 done
-echo "surya 2222" 
 
 if [ -z "$RELEASE" ]; then
 	if git describe --exact-match >/dev/null 2>&1; then
@@ -287,9 +286,12 @@ if [ -z "$_hostkeys" ]; then
 	_pub=${PACKAGER_PRIVKEY:+${PACKAGER_PRIVKEY}.pub}
 	_abuild_pubkey="${PACKAGER_PUBKEY:-$_pub}"
 fi
+echo "surya 2222" 
 
 # create images
 for ARCH in $req_arch; do
+	echo "surya 2223" 
+
 	APKROOT="$WORKDIR/apkroot-$ARCH"
 	if [ ! -e "$APKROOT" ]; then
 		# create root for caching packages
@@ -311,6 +313,8 @@ for ARCH in $req_arch; do
 		_yaml_out=${OUTDIR:-.}/latest-releases.yaml
 		echo "---" > "$_yaml_out"
 	fi
+	echo "surya 2224" 
+
 	for PROFILE in $req_profiles; do
 		(build_profile) || exit 1
 	done

@@ -125,11 +125,7 @@ jobs:
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: jnilibs
-          path: ./external/libvmc
+    
 
   app:
     name: Build application
@@ -211,7 +207,7 @@ jobs:
 
   publish:
     name: Publish release
-    needs: [app]
+    needs: [libvmc]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
     steps:

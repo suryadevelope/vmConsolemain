@@ -34,7 +34,7 @@ build-local:
 	@echo "Output directory:" $(OUTPUT_DIR)
 	@echo
 	mkdir -p $(OUTPUT_DIR)
-## add '--repository $(CURRENT_DIR)/packages/extras' for local repository.
+	chmod +x genapkovl.sh
 	sh mkimage.sh \
 		--outdir $(OUTPUT_DIR) \
 		--tag $(ALPINE_LINUX_TAG) \

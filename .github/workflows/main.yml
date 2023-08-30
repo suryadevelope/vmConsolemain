@@ -79,6 +79,11 @@ jobs:
           make build-docker OUTPUT_DIR=$(realpath ../../app/src/main/assets)
         env:
           RSA_KEY_PASSPHRASE: ${{ secrets.ABUILD_KEY_PASSPHRASE }}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: alpine-x86_64.iso
+          path: ./app/src/main/assets/alpine-x86_64.iso
 
   libvmc:
     name: Build libVMC.so
@@ -120,6 +125,11 @@ jobs:
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: jnilibs
+          path: ./external/libvmc
 
   app:
     name: Build application

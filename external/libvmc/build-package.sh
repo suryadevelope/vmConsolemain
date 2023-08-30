@@ -4,7 +4,7 @@ set -e -o pipefail -u
 
 export PACKAGE_API_LEVEL="24"
 export PACKAGE_TARGET_ARCH="aarch64"
-export PACKAGE_INSTALL_PREFIX="/data/data/sylirre.vmconsole/files"
+export PACKAGE_INSTALL_PREFIX="/data/data/epit.ilabs/files"
 
 : "${CONFIG_BUILDER_MAKE_PROCESSES:="$(nproc)"}"
 CONFIG_BUILDER_DEBUG="false"

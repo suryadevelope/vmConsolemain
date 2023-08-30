@@ -35,6 +35,7 @@ build-local:
 	@echo
 	mkdir -p $(OUTPUT_DIR)
 	chmod +x genapkovl.sh
+	chmod +x mkimage.sh
 	sh mkimage.sh \
 		--outdir $(OUTPUT_DIR) \
 		--tag $(ALPINE_LINUX_TAG) \
